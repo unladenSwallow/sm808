@@ -2,6 +2,7 @@ package sound
 
 import "fmt"
 
+// Song represents a song to played by SM-808
 type Song struct {
 	BPM      int      // the beats per minute of the song
 	Title    string   // the title of the song
@@ -10,6 +11,8 @@ type Song struct {
 	Step     float64  // length of a step in seconds
 }
 
+// NewSong returns a song to be played by SM-808, or an error indicating why the song could not be created
+// Accepts a bpm (integer), title (string), duration (float64), and a pattern (map[string][8]int)
 func NewSong(bpm int, title string, duration float64, pattern map[string][8]int) (*Song, error) {
 	if pattern == nil {
 		return nil, fmt.Errorf("song requires a pattern")
@@ -30,6 +33,8 @@ func NewSong(bpm int, title string, duration float64, pattern map[string][8]int)
 	return s, nil
 }
 
+// generateSongSequence converts a pattern into a a sequence that can be played by the Player
+// accepts a pattern (map[string][8]int)
 func (s *Song) generateSongSequence(pattern map[string][8]int) {
 	s.Sequence = make([]string, 8)
 	for i := 0; i < 8; i++ {
@@ -52,10 +57,12 @@ func (s *Song) generateSongSequence(pattern map[string][8]int) {
 	}
 }
 
+// calculateStep calculates the duration of a step in the song given the bpm.
 func (s *Song) calculateStep() {
 	s.Step = ((60.0 / float64(s.BPM)) * 4.0) / 8.0
 }
 
+// Play creates a new player and plays the song.
 func (s *Song) Play() {
 	p := NewPlayer()
 	p.Play(*s)

@@ -4,11 +4,14 @@ import (
 	"strconv"
 )
 
+// Args struct matches accepted command line arguments for the sm-808
 type Args struct {
-	Bpm      int
-	Duration float64
+	Bpm      int // the beats per minute
+	Duration float64 // the song duration to play
 }
 
+// NewArgs returns the Args parsed from the command line arguments
+// Accepts a slice of strings representing the command line arguments supplied
 func NewArgs(args []string) (*Args, error) {
 	var bpm int
 	var duration float64
