@@ -10,8 +10,7 @@ type Player struct {
 }
 
 func NewPlayer() Player {
-	return Player {
-	}
+	return Player{}
 }
 
 func (p Player) Play(song Song) {
@@ -29,15 +28,15 @@ func (p Player) Play(song Song) {
 			}
 		}
 	}()
-	time.Sleep(time.Duration(song.Length) * time.Second)
+	time.Sleep(time.Duration(song.Duration) * time.Second)
 	p.StepTicker.Stop()
 	done <- true
-	fmt.Println("FIN!")
+	fmt.Println("\nFIN!")
 }
 
 func (p Player) PlayStep(step string, i int) {
-		if i%8 == 0 {
-			step += "\n"
-		}
-		fmt.Print(step)
+	if i%8 == 0 {
+		step += "\n"
+	}
+	fmt.Print(step)
 }
