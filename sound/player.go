@@ -16,7 +16,7 @@ func NewPlayer() Player {
 }
 
 // Play plays a song
-// Accepts: song, a struct representing the song to be played
+// Accepts song, a struct representing the song to be played
 func (p Player) Play(song Song) {
 	p.StepTicker = time.NewTicker(time.Duration(song.Step*1000) * time.Millisecond)
 	done := make(chan bool)
@@ -35,10 +35,10 @@ func (p Player) Play(song Song) {
 	time.Sleep(time.Duration(song.Duration) * time.Second)
 	p.StepTicker.Stop()
 	done <- true
-	fmt.Println("\nFIN!")
+	fmt.Println("\nFIN! Thank you for listening!")
 }
 
-// PlayStep "plays" one step of the song.
+// PlayStep "plays" one step of the song
 func (p Player) PlayStep(step string, i int) {
 	if i%8 == 0 {
 		step += "\n"

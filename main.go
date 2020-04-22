@@ -2,14 +2,15 @@ package main
 
 import (
 	"fmt"
-	config2 "github.com/unladenSwallow/sm808/config"
-	"github.com/unladenSwallow/sm808/sound"
 	"os"
+
+	"github.com/unladenSwallow/sm808/sound"
+	"github.com/unladenSwallow/sm808/util"
 )
 
 func main() {
 	args := os.Args[1:]
-	config, err := config2.NewArgs(args)
+	config, err := util.NewArgs(args)
 	if err != nil {
 		fmt.Println(err)
 		return

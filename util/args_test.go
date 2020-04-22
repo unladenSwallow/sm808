@@ -1,4 +1,4 @@
-package config
+package util
 
 import (
 	"fmt"
@@ -18,10 +18,12 @@ func Test_NewArgs(t *testing.T) {
 				Bpm:      128,
 				Duration: 30,
 			},
-		}, "Error-NonInvalidBPM": {
+		},
+		"Error-NonInvalidBPM": {
 			argsGiven:   []string{"-bpm", "abc", "-duration", "30"},
 			errResponse: fmt.Errorf("strconv.Atoi: parsing \"abc\": invalid syntax"),
-		}, "Error-InvalidDuration": {
+		},
+		"Error-InvalidDuration": {
 			argsGiven:   []string{"-duration", "abc", "-bpm", "30"},
 			errResponse: fmt.Errorf("strconv.ParseFloat: parsing \"abc\": invalid syntax"),
 		},

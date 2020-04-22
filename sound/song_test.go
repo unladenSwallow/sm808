@@ -31,7 +31,8 @@ func Test_NewSong(t *testing.T) {
 				Sequence: []string{"|_", "|test1+test2+test3", "|_", "|test1+test2+test3", "|_", "|test1+test2+test3", "|test1+test2+test3", "|_|"},
 				Step:     0.234375,
 			},
-		}, "Error-NegativeBPM": {
+		},
+		"Error-NegativeBPM": {
 			bpm:      -128,
 			title:    "test",
 			duration: 100,
@@ -41,7 +42,8 @@ func Test_NewSong(t *testing.T) {
 				"test3": {0, 1, 0, 1, 0, 1, 1, 0},
 			},
 			errResponse: fmt.Errorf("bpm must be between 1 and 999"),
-		}, "Error-NegativeDuration": {
+		},
+		"Error-NegativeDuration": {
 			bpm:      128,
 			title:    "test",
 			duration: -100,
@@ -51,7 +53,8 @@ func Test_NewSong(t *testing.T) {
 				"test3": {0, 1, 0, 1, 0, 1, 1, 0},
 			},
 			errResponse: fmt.Errorf("song duration must be between 1 and 999"),
-		}, "Error-NoPattern": {
+		},
+		"Error-NoPattern": {
 			bpm:         128,
 			title:       "test",
 			duration:    100,
